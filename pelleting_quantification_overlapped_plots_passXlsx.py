@@ -298,7 +298,7 @@ def fit_model(construct_list, x_data, y_data, eq):
     for construct in construct_list:
         index = construct_list.index(construct)
         y_data_i_array = np.asarray(y_data[index])   # convert "experimental" y_data into a format for the fit
-        fit_i = curve_fit(eq,x_data,y_data_i_array)  # fit model to the data
+        fit_i = curve_fit(eq,x_data,y_data_i_array, bounds = ([0,0],[1,np.inf]))  # fit model to the data, set min and max values for kinetic params
         opt_params[index] = fit_i[0]                 # optimal parameters for the construct being analysed
         
         # calculate the R-squared for the fit and the standard errors for the parameters
